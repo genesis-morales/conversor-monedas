@@ -5,8 +5,9 @@ public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ConsultaMoneda consultaMoneda = new ConsultaMoneda();
-        int opcion;
-        BigDecimal monto;
+        Consola consola = new Consola();
+
+        String opcion;
 
         do {
             System.out.println("""
@@ -25,51 +26,43 @@ public class Principal {
                         
                    Digite el numero de coversión que desea hacer: """);
 
-            opcion = scanner.nextInt();
+            opcion = scanner.next();
+
+            if (opcion == null) {
+                System.out.println("Debe elegir una opción");
+                return;
+            }
+            for (char c : opcion.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    System.out.println(" Error: Debe ingresar solo números.");
+                    return; // vuelve al menú
+                }
+            }
+
             switch (opcion) {
-                case 1: convertir(consultaMoneda, scanner, "ARS", "Peso argentino");
+                case "1": consola.convertir(consultaMoneda, scanner, "ARS", "Peso argentino");
                     break;
 
-                case 2: convertir(consultaMoneda, scanner, "BOB", "Boliviano ");
+                case "2": consola.convertir(consultaMoneda, scanner, "BOB", "Boliviano ");
                     break;
 
-                case 3: convertir(consultaMoneda, scanner, "BRL", "Real brasileño");
+                case "3": consola.convertir(consultaMoneda, scanner, "BRL", "Real brasileño");
                     break;
 
-                case 4: convertir(consultaMoneda, scanner, "CLP", "Peso chileno");
+                case "4": consola.convertir(consultaMoneda, scanner, "CLP", "Peso chileno");
                     break;
 
-                case 5: convertir(consultaMoneda, scanner, "COP", "Peso colombiano");
+                case "5": consola.convertir(consultaMoneda, scanner, "COP", "Peso colombiano");
                     break;
 
-                case 6: convertir(consultaMoneda, scanner, "USD", "Dólar estadounidense");
+                case "6": consola.convertir(consultaMoneda, scanner, "USD", "Dólar estadounidense");
                     break;
 
-                case 7: System.out.println("Hasta pronto....");
+                case "7": System.out.println("Hasta pronto....");
                     break;
 
                 default: System.out.println("Opción incorrecta.");
             }
-        } while (opcion != 7);
-    }
-
-    private static void convertir(ConsultaMoneda consulta, Scanner scanner, String codigo, String nombre) {
-        System.out.println("-------------------------------");
-        System.out.println("CRC => " + codigo + " - " + nombre);
-        System.out.println("Ingrese el monto a convertir: ");
-
-        String input = scanner.next();
-
-        // --- VALIDACIÓN ---
-        for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                System.out.println(" Error: Debe ingresar solo números.");
-                return; // vuelve al menú
-            }
-        }
-
-        BigDecimal monto = new BigDecimal(input);
-        BigDecimal resultado = consulta.convertirCRC(codigo, monto);
-        System.out.println("Resultado: " + resultado + " " + codigo);
+        } while (!opcion.equals("7"));
     }
 }
