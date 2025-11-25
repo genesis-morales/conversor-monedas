@@ -1,4 +1,4 @@
-# Conversor de Moneda CRC (Java)
+# 💰 Conversor de Moneda Tico-Costarricense (CRC) 
 
 Este proyecto es un **conversor de moneda** desarrollado en **Java**, utilizando la API pública de ExchangeRate-API para obtener tipos de cambio en tiempo real.  
 Permite convertir montos desde **colones costarricenses (CRC)** hacia diferentes monedas internacionales.
