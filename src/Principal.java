@@ -94,6 +94,6 @@ public class Principal {
 
                 default: System.out.println("Opción incorrecta.");
             }
-        } while (!opcion.equals("7"));
+        } while (!opcion.equals("8"));
     }
 }

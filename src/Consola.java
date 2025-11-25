@@ -26,12 +26,12 @@ public class Consola {
             BigDecimal resultado = consulta.convertirCRC(codigo, monto);
 
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-            String fecha = dateTime.format(formato);
+            String fecha = LocalDateTime.now().format(formato);
 
             System.out.println("Resultado: " + resultado + " " + codigo);
             System.out.println("Tipo de cambio consultado el: " + fecha);
 
-            Historial item = new Historial(codigo, monto, resultado, dateTime);
+            Historial item = new Historial(codigo, monto, resultado, LocalDateTime.now());
             historial.add(item);
 
 
